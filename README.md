@@ -4,6 +4,7 @@
 
 * stack build
 * stack exec scheme-interpres-exe
+* If running it requires arguments: stack exec scheme-interpres-exe John
 
 ## Reference
 
