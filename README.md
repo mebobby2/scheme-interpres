@@ -25,4 +25,4 @@ https://en.wikibooks.org/wiki/Write_Yourself_a_Scheme_in_48_Hours
 ## Upto
 https://en.wikibooks.org/wiki/Write_Yourself_a_Scheme_in_48_Hours/Parsing
 
-Rewrite parseNumber, without liftM, using
+Recursive Parsers: Adding lists, dotted lists, and quoted datums
