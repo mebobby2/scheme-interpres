@@ -2,7 +2,7 @@
 
 ## Instructions
 
-* Installing libraries: stack install parsec
+* Installing packages: stack install parsec
 * Building project: stack build
 * Run program: stack exec scheme-interpres-exe
 * If running it requires arguments: stack exec scheme-interpres-exe John
