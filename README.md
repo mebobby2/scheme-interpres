@@ -11,6 +11,10 @@
 
 * In general, use >> if the actions don't return a value, >>= if you'll be immediately passing that value into the next action, and do-notation otherwise.
 
+>>= passes the result of the expression on the left as an argument to the expression on the right, in a way that respects the context the argument and function use
+
+>> is used to order the evaluation of expressions within some context; it makes evaluation of the right depend on the evaluation of the left
+
 * Each line of a do-block must have the same type
 
 * ```parseNumber = liftM (Number . read) $ many1 digit```
