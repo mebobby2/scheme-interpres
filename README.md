@@ -31,10 +31,13 @@ unwordsList = unwords . map showVal
 ```
 Our definition of unwordsList doesn't include any arguments. This is an example of point-free style: writing definitions purely in terms of function composition and partial application, without regard to individual values or "points". Instead, we define it as the composition of a couple of built-in functions. First, we partially-apply map to showVal, which creates a function that takes a list of LispVals and returns a list of their string representations. Haskell functions are curried: this means that a function of two arguments, like map, is really a function that returns a function of one argument. As a result, if you supply only a single argument, you get back a function of one argument that you can pass around, compose, and apply later. In this case, we compose it with unwords: map showVal converts a list of LispVals to a list of their string representations, and then unwords joins the result together with spaces.
 
+* ```eval (List (Atom func : args)) = apply func $ map eval args```
+This is another nested pattern, but this time we match against the cons operator ":" instead of a literal list. Lists in Haskell are really syntactic sugar for a chain of cons applications and the empty list: [1, 2, 3, 4] = 1:(2:(3:(4:[]))). By pattern-matching against cons itself instead of a literal list, we're saying "give me the rest of the list" instead of "give me the second element of the list". For example, if we passed (+ 2 2) to eval, func would be bound to "+" and args would be bound to [Number 2, Number 2].
+
 
 ## Reference
 
 https://en.wikibooks.org/wiki/Write_Yourself_a_Scheme_in_48_Hours
 
 ## Upto
-https://en.wikibooks.org/wiki/Write_Yourself_a_Scheme_in_48_Hours/Evaluation,_Part_1
+https://en.wikibooks.org/wiki/Write_Yourself_a_Scheme_in_48_Hours/Error_Checking_and_Exceptions
