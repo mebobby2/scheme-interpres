@@ -23,6 +23,4 @@ Unfortunately, the result of many1 digit is actually a Parser String, so our com
 https://en.wikibooks.org/wiki/Write_Yourself_a_Scheme_in_48_Hours
 
 ## Upto
-https://en.wikibooks.org/wiki/Write_Yourself_a_Scheme_in_48_Hours/Parsing
-
-Recursive Parsers: Adding lists, dotted lists, and quoted datums
+https://en.wikibooks.org/wiki/Write_Yourself_a_Scheme_in_48_Hours/Evaluation,_Part_1
