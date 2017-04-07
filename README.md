@@ -41,3 +41,5 @@ https://en.wikibooks.org/wiki/Write_Yourself_a_Scheme_in_48_Hours
 
 ## Upto
 https://en.wikibooks.org/wiki/Write_Yourself_a_Scheme_in_48_Hours/Error_Checking_and_Exceptions
+
+Then we define a type to represent functions that may throw a LispError or return a value. Remember how parse used an Either data type to represent exceptions? We take the same approach here:
