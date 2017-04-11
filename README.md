@@ -34,6 +34,28 @@ Our definition of unwordsList doesn't include any arguments. This is an example 
 * ```eval (List (Atom func : args)) = apply func $ map eval args```
 This is another nested pattern, but this time we match against the cons operator ":" instead of a literal list. Lists in Haskell are really syntactic sugar for a chain of cons applications and the empty list: [1, 2, 3, 4] = 1:(2:(3:(4:[]))). By pattern-matching against cons itself instead of a literal list, we're saying "give me the rest of the list" instead of "give me the second element of the list". For example, if we passed (+ 2 2) to eval, func would be bound to "+" and args would be bound to [Number 2, Number 2].
 
+* Either is yet another instance of a monad. In this case, the "extra information" being passed between Either actions is whether or not an error occurred. Bind applies its function if the Either action holds a normal value, or passes an error straight through without computation. This is how exceptions work in other languages, but because Haskell is lazily-evaluated, there's no need for a separate control-flow construct. If bind determines that a value is already an error, the function is never called.
+
+*
+```
+main = do
+  args <- getArgs
+  evaled <- return $ liftM show $ readExpr (args !! 0) >>= eval
+  putStrLn $ extractValue $ trapError evaled
+```
+Here's what this new function is doing:
+
+1. args is the list of command-line arguments.
+2. evaled is the result of:
+2.1taking first argument (args !! 0);
+2.2parsing it (readExpr);
+2.3 passing it to eval (>>= eval; the bind operation has higher precedence than $);
+2.4 calling show on it within the Error monad. (Note also that the whole action has type IO (Either LispError String), giving evaled type Either LispError String. It has to be, because our trapError function can only convert errors to Strings, and that type must match the type of normal values.)
+3. Caught is the result of:
+3.1 calling trapError on evaled, converting errors to their string representation;
+3.2 calling extractValue to get a String out of this Either LispError String action;
+3.3 printing the results through putStrLn.
+
 
 ## Reference
 
@@ -42,4 +64,4 @@ https://en.wikibooks.org/wiki/Write_Yourself_a_Scheme_in_48_Hours
 ## Upto
 https://en.wikibooks.org/wiki/Write_Yourself_a_Scheme_in_48_Hours/Error_Checking_and_Exceptions
 
-Then we define a type to represent functions that may throw a LispError or return a value. Remember how parse used an Either data type to represent exceptions? We take the same approach here:
+Compile and run the new code, and try throwing it a couple errors:
