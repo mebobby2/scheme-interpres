@@ -39,7 +39,7 @@ symbol = oneOf "!#$%&|*+-/:<=>?@^_~"
 readExpr :: String -> ThrowsError LispVal
 readExpr input = case parse parseExpr "lisp" input of
   Left err -> throwError $ Parser err
-  Right val -> val
+  Right val -> return val
 
 spaces :: Parser ()
 spaces = skipMany1 space
@@ -120,7 +120,7 @@ eval (List (Atom func : args)) = mapM eval args >>= apply func
 eval badForm = throwError $ BadSpecialForm "Unrecognized special form" badForm
 
 apply :: String -> [LispVal] -> ThrowsError LispVal
-apply func args = maybe (throwError $ NotFunction "Unrecognized primitive function args", func)
+apply func args = maybe (throwError $ NotFunction "Unrecognized primitive function args" func)
                         ($ args)
                         (lookup func primitives)
 

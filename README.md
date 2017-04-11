@@ -56,12 +56,15 @@ Here's what this new function is doing:
 3.2 calling extractValue to get a String out of this Either LispError String action;
 3.3 printing the results through putStrLn.
 
+## Build note
+
+In my .bash_profile, I have the line ```export DYLD_LIBRARY_PATH="/usr/local/lib:$DYLD_LIBRARY_PATH"``` so I can use the Python Imaging Library in another project. This causes problems with building this project.
+
+To make building work with this project, ```unset DYLD_LIBRARY_PATH```.
 
 ## Reference
 
 https://en.wikibooks.org/wiki/Write_Yourself_a_Scheme_in_48_Hours
 
 ## Upto
-https://en.wikibooks.org/wiki/Write_Yourself_a_Scheme_in_48_Hours/Error_Checking_and_Exceptions
-
-Compile and run the new code, and try throwing it a couple errors:
+https://en.wikibooks.org/wiki/Write_Yourself_a_Scheme_in_48_Hours/Evaluation,_Part_2
