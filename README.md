@@ -68,3 +68,5 @@ https://en.wikibooks.org/wiki/Write_Yourself_a_Scheme_in_48_Hours
 
 ## Upto
 https://en.wikibooks.org/wiki/Write_Yourself_a_Scheme_in_48_Hours/Evaluation,_Part_2
+
+Decided to put this tutorial on hold as I wasn't learning much from it due to boredom. The boredom steams from the fact that I do not know Scheme, and so, coding a Scheme interpreter is of little interest. Might come back to this later on, but for now, leaving the Github repo because it contains Haskell notes.
